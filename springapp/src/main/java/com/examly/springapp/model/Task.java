@@ -27,7 +27,7 @@ public class Task {
     private LocalDate dueDate;
     @ManyToOne
     @JoinColumn(name="created_by")
-    private User user;
+    private User createdBy;
 
     
     public Task(Long id, String title, String description, String priority, String status, LocalDate dueDate,
@@ -38,7 +38,7 @@ public class Task {
         this.priority = priority;
         this.status = status;
         this.dueDate = dueDate;
-        this.user = user;
+        this.createdBy = user;
     }
 
 
@@ -107,13 +107,13 @@ public class Task {
     }
 
 
-    public User getUser() {
-        return user;
+    public User getCreatedBy() {
+        return createdBy;
     }
 
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
     
 }

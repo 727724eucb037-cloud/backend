@@ -49,6 +49,11 @@ public class UserController {
         Optional<User> user=userService.getUserById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+    @GetMapping("/role/{role}")
+    public ResponseEntity<List<User>> getUserByRole(@PathVariable String role){
+        List<User> user=userService.getUserByRole(role);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
     
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User obj){

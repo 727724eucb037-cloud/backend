@@ -1,11 +1,13 @@
 package com.examly.springapp.repository;
 
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import jakarta.persistence.Id;
+import com.examly.springapp.model.TaskAssignment;
 
 @Repository
-public class TaskAssignmentRepository {
-    @Id
-    private int id;
+public interface TaskAssignmentRepository extends JpaRepository<TaskAssignment,Long>{
+    List<TaskAssignment> findByUser_Id(Long id);
 }

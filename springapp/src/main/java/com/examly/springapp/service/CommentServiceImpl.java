@@ -1,9 +1,17 @@
 package com.examly.springapp.service;
 
-import jakarta.persistence.Id;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class CommentServiceImpl {
-    @Id
-    private int id;
-    
+import com.examly.springapp.model.Comment;
+import com.examly.springapp.repository.CommentRepository;
+
+@Service
+public class CommentServiceImpl implements CommentService{
+    @Autowired
+    private CommentRepository commentRepository;
+
+    public Comment getCommentById(Long id) {
+        return commentRepository.findById(id).orElse(null);
+    }
 }

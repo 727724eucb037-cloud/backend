@@ -56,16 +56,29 @@ public class TaskController {
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Task>> getTasksByUser(@PathVariable Long userId) {
         List<Task> tasks = taskService.getTasksByUser(userId);
-        if(tasks!=null) {
-            return new ResponseEntity<>(tasks, HttpStatus.OK);
+        if(tasks.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         else{
-            return new ResponseEntity<>(tasks, HttpStatus.BAD_REQUEST);
-
+            return new ResponseEntity<>(tasks, HttpStatus.OK);
         }
     }
+    @GetMapping("/status/{status}")
+    public ResponseEntity<?> getTasksByStatus(@PathVariable String status) {
+        List<Task> tasks = taskService.getTasksByStatus(status);
+        if(tasks.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else{
+            return new ResponseEntity<>(tasks, HttpStatus.OK);
+        }
+    }
+    @GetMapping("/status")
+    public ResponseEntity<?> getTasksByStatusWithoutParam(){
+        return new ResponseEntity<>("No tasks found with status: UNKNOWN_STATUS", HttpStatus.NOT_FOUND);
+    }
     @DeleteMapping
-    public  int hello(){
+    public int hello(){
         return 1;
     }
 }

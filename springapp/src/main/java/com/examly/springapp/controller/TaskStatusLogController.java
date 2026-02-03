@@ -44,4 +44,12 @@ public class TaskStatusLogController {
         List<TaskStatusLog> logs = service.getLogsByTask(taskId);
         return new ResponseEntity<>(logs, HttpStatus.OK);
     }
+    @GetMapping("old/{oldStatus}")
+    public ResponseEntity<?> getLogsByOldStatus(@PathVariable String oldStatus) {
+        List<TaskStatusLog> logs = service.getLogsByOldStatus(oldStatus);
+        if(logs.isEmpty()){
+            return new ResponseEntity<>("No logs found with oldStatus: "+oldStatus, HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(logs, HttpStatus.OK);
+    }
 }

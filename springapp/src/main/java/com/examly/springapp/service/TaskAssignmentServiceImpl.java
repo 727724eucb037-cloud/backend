@@ -1,8 +1,18 @@
 package com.examly.springapp.service;
 
-import jakarta.persistence.Id;
+import java.util.List;
 
-public class TaskAssignmentServiceImpl {
-    @Id
-    private int id;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.examly.springapp.model.TaskAssignment;
+import com.examly.springapp.repository.TaskAssignmentRepository;
+@Service
+public class TaskAssignmentServiceImpl implements TaskAssignmentService{
+    @Autowired
+    TaskAssignmentRepository taskAssignmentRepo;
+
+    public List<TaskAssignment> getAssignmentsByUserId(Long id){
+        return taskAssignmentRepo.findByUser_Id(id);
+    }
 }

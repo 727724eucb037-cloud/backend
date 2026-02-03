@@ -1,8 +1,9 @@
 package com.examly.springapp.service;
 
-import jakarta.persistence.Id;
+import java.util.List;
 
-public class TaskAssignmentService {
-    @Id
-    private int id;
+import com.examly.springapp.model.TaskAssignment;
+
+public interface TaskAssignmentService {
+    public List<TaskAssignment> getAssignmentsByUserId(Long id);
 }
